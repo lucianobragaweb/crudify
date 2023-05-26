@@ -36,7 +36,7 @@ class CrudifyServiceProvider extends ServiceProvider implements DeferrableProvid
             self::ROOT_PATH.'/resources/views/components/'.config('crudify.theme').'/input-text.blade.php' => resource_path('views/components/crudify/input-text.blade.php'),
             self::ROOT_PATH.'/resources/views/components/'.config('crudify.theme').'/input-number.blade.php' => resource_path('views/components/crudify/input-number.blade.php'),
             self::ROOT_PATH.'/resources/views/components/'.config('crudify.theme').'/input-date.blade.php' => resource_path('views/components/crudify/input-date.blade.php'),
-            self::ROOT_PATH.'/resources/views/components/'.config('crudify.theme').'/button.blade.php' => resource_path('views/components/crudify/button.blade.php'),
+            self::ROOT_PATH.'/resources/views/components/'.config('crudify.theme').'/form/button.blade.php' => resource_path('views/components/crudify/button.blade.php'),
         ], 'crudify');
     }
 
