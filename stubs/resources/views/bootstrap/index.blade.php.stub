@@ -1,6 +1,8 @@
 <!-- resources/views/{{pluralName}}/index.blade.php -->
 
-@extends('layouts.master')
+@extends('layouts.dashboard.index')
+
+@section('title', '{{pluralName}}')
 
 @section('content')
     <div class="row mt-4">

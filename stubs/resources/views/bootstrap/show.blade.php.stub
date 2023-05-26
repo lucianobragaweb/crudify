@@ -1,22 +1,43 @@
 <!-- resources/views/{{pluralName}}/show.blade.php -->
 
-@extends('layouts.master')
+@extends('layouts.dashboard.index')
+
+@section('title', '{{pluralName}}')
 
 @section('content')
-    <div class="row mt-4">
+<div class="container-fluid">
+    <div class="row">
         <div class="col">
-            <div class="card">
-                <div class="card-header">
-                    {{modelName}} Detalhes
-                </div>
-                <div class="card-body">
+
+            <x-dashboard.form.section-confirmation>
+
+                <x-slot:title>
+                    Lorem
+                </x-slot:title>
+
+                <x-slot:content>
                     {{column}}
-                </div>
-                <div class="card-footer">
-                    <a href="{{ route('{{pluralName}}.index') }}" class="btn btn-primary btn-sm">Voltar</a>
-                    <a href="{{ route('{{pluralName}}.edit', ${{singularName}}->id) }}" class="btn btn-secondary btn-sm">Editar</a>
+                </x-slot:content>
+
+            </x-dashboard.form.section-confirmation>
+
+            <div class="row">
+                <div class="col-12 py-4 d-flex justify-content-between">
+                    <x-crudify.form.button
+                        :url="route('finalidades.index')"
+                        :iconLeft="'ri-arrow-left-line'"
+                        :btnColor="'btn-outline-secondary'"
+                        :text="'Voltar'"
+                    />
+                    <x-crudify.form.button
+                        :url="route('finalidades.edit', $finalidade->id)"
+                        :iconRight="'ri-pencil-line'"
+                        :btnColor="'btn-warning'"
+                        :text="'Editar'"
+                    />
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

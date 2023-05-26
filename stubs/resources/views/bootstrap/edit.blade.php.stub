@@ -1,35 +1,68 @@
 <!-- resources/views/{{pluralName}}/edit.blade.php -->
 
-@extends('layouts.master')
+@extends('layouts.dashboard.index')
+
+@section('title', '{{pluralName}}')
 
 @section('content')
-    <div class="row mt-4">
+<div class="container-fluid">
+    <div class="row">
         <div class="col">
-             @if ($errors->any())
+            @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-warning">{{ $error }}</div>
                 @endforeach
             @endif
 
-            <div class="card">
-                <div class="card-header">
-                    Editar {{modelName}}
-                </div>
+            <form method="POST" action="{{ route('{{pluralName}}.update', ${{singularName}}->id) }}">
+                @csrf
+                @method('PUT')
 
-                <form method="POST" action="{{ route('{{pluralName}}.update', ${{singularName}}->id) }}">
-                    @csrf
-                    @method('PUT')
+                 <x-dashboard.form.section>
 
-                    <div class="card-body">
+                    <x-slot:title>
+                        Lorem
+                    </x-slot:title>
+
+                    <x-slot:content>
                         {{column}}
-                    </div>
+                    </x-slot:content>
 
-                    <div class="card-footer">
-                        <a href="{{ route('{{pluralName}}.index') }}" class="btn btn-secondary btn-sm">Cancelar</a>
-                        <button type="submit" class="btn btn-success btn-sm">Salvar</button>
+                </x-dashboard.form.section>
+
+
+                <div class="row">
+                    <div class="col-12 py-4 d-flex justify-content-between">
+                        <div class="d-flex">
+                            <div class="me-2">
+                                <x-crudify.form.button
+                                    :url="route('{{pluralName}}.index')"
+                                    :iconLeft="'ri-arrow-left-line'"
+                                    :btnColor="'btn-outline-secondary'"
+                                    :text="'Cancelar'"
+                                />
+                            </div>
+                            <div>
+                                <x-crudify.form.button
+                                    :iconLeft="'ri-delete-bin-6-line'"
+                                    :btnColor="'btn-danger'"
+                                    :type="'submit'"
+                                    :text="'Excluir'"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <x-crudify.form.button
+                                :iconLeft="'ri-save-3-line'"
+                                :btnColor="'btn-secondary'"
+                                :type="'submit'"
+                                :text="'Salvar'"
+                            />
+                        </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 @endsection

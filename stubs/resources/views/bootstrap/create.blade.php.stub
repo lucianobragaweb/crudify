@@ -1,34 +1,50 @@
 <!-- resources/views/{{pluralName}}/create.blade.php -->
 
-@extends('layouts.master')
+@extends('layouts.dashboard.index')
+
+@section('title', '{{pluralName}}')
 
 @section('content')
-    <div class="row mt-4">
+<div class="container-fluid">
+    <div class="row">
         <div class="col">
-             @if ($errors->any())
+            @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-warning">{{ $error }}</div>
                 @endforeach
             @endif
 
-            <div class="card">
-                <div class="card-header">
-                    Criar {{modelName}}
-                </div>
+            <form method="POST" action="{{ route('{{pluralName}}.store') }}">
+                @csrf
 
-                <form method="POST" action="{{ route('{{pluralName}}.store') }}">
-                    @csrf
+                <x-dashboard.form.section>
+                    <x-slot:title>
+                        Lorem
+                    </x-slot:title>
 
-                    <div class="card-body">
+                    <x-slot:content>
                         {{column}}
-                    </div>
+                    </x-slot:content>
+                </x-dashboard.form.section>
 
-                    <div class="card-footer">
-                        <a href="{{ route('{{pluralName}}.index') }}" class="btn btn-secondary btn-sm">Cancelar</a>
-                        <button type="submit" class="btn btn-success btn-sm">Salvar</button>
+                <div class="row">
+                    <div class="col-12 py-4 d-flex justify-content-between">
+                        <x-dashboard.form.button
+                            :url="route('{{pluralName}}.index')"
+                            :iconLeft="'ri-arrow-left-line'"
+                            :btnColor="'btn-outline-secondary'"
+                            :text="'Cancelar'"
+                        />
+                        <x-dashboard.form.button
+                            :iconLeft="'ri-save-3-line'"
+                            :btnColor="'btn-secondary'"
+                            :type="'submit'"
+                            :text="'Salvar'"
+                        />
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 @endsection
